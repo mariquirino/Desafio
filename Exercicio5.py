@@ -13,7 +13,7 @@ def exercicio5():
     node4 = Node("c@", "Asd")
     node5 = Node("d@", "qwe")
     node6 = Node("e@", "zxc")
-    # node7 = Node(8)
+    # node7 = Node("other@", "zxc")
     node.next = node2
     node2.next = node3
     node3.next = node4
@@ -21,10 +21,10 @@ def exercicio5():
     node5.next = node6
     # node6.next = node7
 
-    # Fazendo o Merge Sort
+    # Start Merge Sort
     header = sort(node)
 
-    # Removendo repetidos
+    # Remove repeated
     i = header.next
     ant = header
     while i:
@@ -56,49 +56,36 @@ def findMidlle(header):
     nodemidle = header
     header = header.next
     while header.next:
-        # if header.next:
         header = header.next
         if header.next:
             header = header.next
-        # header = header.next
         nodemidle = nodemidle.next
     return nodemidle
 
 
 def mergeLists(head1, head2):
-    # create a temp node NULL
-    temp = None
+    # create a node NULL
+    node = None
 
-    # List1 is empty then return List2
+    # head1 is empty then return header2
     if head1 is None:
         return head2
 
-    # if List2 is empty then return List1
+    # if header2 is empty then return head1
     if head2 is None:
         return head1
 
-    # If List1's data is smaller or
-    # equal to List2's data
+    # if head1 data is smaller or equal to header2 call again mergeLists
     if head1.body <= head2.body:
-
-        # assign temp to List1's data
-        temp = head1
-
-        # Again check List1's data is smaller or equal List2's
-        # data and call mergeLists function.
-        temp.next = mergeLists(head1.next, head2)
+        node = head1
+        node.next = mergeLists(head1.next, head2)
 
     else:
-        # If List2's data is greater than or equal List1's
-        # data assign temp to head2
-        temp = head2
+        node = head2
+        node.next = mergeLists(head1, head2.next)
 
-        # Again check List2's data is greater or equal List's
-        # data and call mergeLists function.
-        temp.next = mergeLists(head1, head2.next)
-
-    # return the temp list.
-    return temp
+    # return the node.
+    return node
 
 
 if __name__ == "__main__":

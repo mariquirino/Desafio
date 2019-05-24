@@ -22,8 +22,10 @@ def exercicio7():
 
     qtd = count(node)
     qtd2 = count(node7)
+
     header = node
     header2 = node7
+
     if qtd > qtd2:
         for i in range(0, qtd - qtd2):
             header = header.next
